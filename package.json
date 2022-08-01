@@ -2,8 +2,8 @@
   "scripts": {
     "clean": "rm -rf example-site/themes/base-theme/ && rm -rf example-site/public && mkdir -p example-site/themes/base-theme/",
     "clone": "npm run clean && git clone https://github.com/gauntface/hugo-base-theme ./example-site/themes/base-theme/",
-    "build-example-dev": "hugo --environment development",
-    "build-example-prod": "hugo",
+    "build-example-dev": "cd example-site && hugo --environment development",
+    "build-example-prod": "cd example-site && hugo",
     "test-dev": "npm run build-example-dev && ava ./dev-*-test.js --verbose --timeout=2m",
     "test-prod": "npm run build-example-prod && ava ./prod-*-test.js --verbose --timeout=2m",
     "test": "npm run test-dev && npm run test-prod"
