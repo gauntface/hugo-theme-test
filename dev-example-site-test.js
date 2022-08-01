@@ -68,6 +68,8 @@ test('css links', async (t) => {
 
   linkHrefs.sort();
 
+  console.log(`Found hrefs: `, linkHrefs);
+
   t.deepEqual(linkHrefs, [
     `${addr}/base/ham/n-ham-c-lite-yt-preload.css`,
     `${addr}/base/html/iframe.css`,
@@ -97,6 +99,8 @@ test('js scripts', async (t) => {
   }
 
   linkHrefs.sort();
+
+  console.log(`Found hrefs: `, linkHrefs);
 
   t.deepEqual(linkHrefs, [
     `${addr}/js/theme-assets-example.js`,
