@@ -54,7 +54,7 @@ test.afterEach(async (t) => {
   await t.context.page.close();
 })
 
-test('css links', async (t) => {
+test.serial('css links', async (t) => {
   const files = glob.sync('**/*.css', {
       cwd: siteDir,
   });
@@ -76,7 +76,7 @@ test('css links', async (t) => {
   ]);
 })
 
-test('js scripts', async (t) => {
+test.serial('js scripts', async (t) => {
   const page = t.context.page;
 
   // Load webpage

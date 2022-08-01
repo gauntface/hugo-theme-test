@@ -52,7 +52,7 @@ test.afterEach(async (t) => {
   await t.context.page.close();
 })
 
-test('css links', async (t) => {
+test.serial('css links', async (t) => {
   const page = t.context.page;
 
   // Load webpage
@@ -84,7 +84,7 @@ test('css links', async (t) => {
   ]);
 })
 
-test('js scripts', async (t) => {
+test.serial('js scripts', async (t) => {
   const page = t.context.page;
 
   // Load webpage
