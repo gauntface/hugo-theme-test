@@ -1,58 +1,8 @@
 const path = require('path');
 const test = require('ava');
-const StaticServer = require('static-server');
-const puppeteer = require('puppeteer');
 const glob = require('glob');
 
 const siteDir = path.join(__dirname, 'example-site', 'public');
-const server = new StaticServer({
-  rootPath: siteDir,
-  port: 9999,
-});
-
-function startServer() {
-  return new Promise((resolve, reject) => {
-    server.start(() => {
-      console.log(`Using http://localhost:${server.port}`);
-      resolve(`http://localhost:${server.port}`);
-    })
-  });
-};
-
-let addr;
-let browser;
-
-test.before(async (t) => {
-  // Server for project
-  addr = await startServer();
-});
-test.before(async (t) => {
-  // Start browser
-  browser = await puppeteer.launch();
-})
-
-test.after('cleanup', async (t) => {
-  // This runs before all tests
-  server.stop();
-
-  await browser.close();
-});
-
-test.beforeEach(async (t) => {
-  // Create new page for test
-  t.context.page = await browser.newPage();
-
-  // Ensure we get 200 responses from the server
-  t.context.page.on('response', (response) => {
-    if (response) {
-      t.deepEqual(response.status(), 200);
-    }
-  })
-});
-
-test.afterEach(async (t) => {
-  await t.context.page.close();
-})
 
 test.serial('css links', async (t) => {
   const files = glob.sync('**/*.css', {
@@ -75,23 +25,15 @@ test.serial('css links', async (t) => {
 })
 
 test.serial('js scripts', async (t) => {
-  const page = t.context.page;
+  const files = glob.sync('**/*.js', {
+    cwd: siteDir,
+  });
+  files.sort();
 
-  // Load webpage
-  await page.goto(`${addr}`);
-
-  const links = await page.$$('script')
-
-  const linkHrefs = [];
-  for(const l of links) {
-    const href = await l.evaluate((l) => l.src);
-    linkHrefs.push(href);
-  }
-
-  linkHrefs.sort();
-
-  t.deepEqual(linkHrefs, [
-    `${addr}/js/theme-assets-example.js`,
-    `${addr}/js/theme-assets-ts-example.js`,
+  t.deepEqual(files, [
+    `js/theme-assets-example.js`,
+    `js/theme-assets-ts-example.js`,
+    `js/theme-static-example.js`,
+    `js/top-static-example.js`,
   ]);
 })
