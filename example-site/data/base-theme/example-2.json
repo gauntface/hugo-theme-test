@@ -1,0 +1,13 @@
+{
+  "js": {
+    "async": [
+      "https://example.com/async.js"
+    ],
+    "preload": [
+      "https://example.com/preload.js"
+    ],
+    "sync": [
+      "https://example.com/sync.js"
+    ]
+  }
+}

@@ -79,6 +79,9 @@ test.serial('css links', async (t) => {
     `${addr}/css/theme-assets-example.css`,
     `${addr}/css/theme-static-example.css`,
     `${addr}/css/top-static-example.css`,
+    'https://example.com/async.css',
+    'https://example.com/preload.css',
+    'https://example.com/sync.css',
   ]);
 })
 
@@ -103,5 +106,8 @@ test.serial('js scripts', async (t) => {
     `${addr}/js/theme-assets-ts-example.js`,
     `${addr}/js/theme-static-example.js`,
     `${addr}/js/top-static-example.js`,
+    'https://example.com/async.js',
+    'https://example.com/preload.js',
+    'https://example.com/sync.js',
   ]);
 })
