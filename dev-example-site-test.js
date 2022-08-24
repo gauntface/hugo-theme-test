@@ -69,7 +69,7 @@ test.serial('css links', async (t) => {
   linkHrefs.sort();
 
   t.deepEqual(linkHrefs, [
-    `${addr}/base/ham/n-ham-c-lite-yt-preload.css`,
+    `${addr}/base/ham/n-ham-c-lite-yt-async.css`,
     `${addr}/base/html/iframe.css`,
     `${addr}/base/html/img.css`,
     `${addr}/base/html/p.css`,

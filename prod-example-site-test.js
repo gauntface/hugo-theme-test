@@ -11,7 +11,7 @@ test.serial('css links', async (t) => {
   files.sort();
 
   t.deepEqual(files, [
-    `base/ham/n-ham-c-lite-yt-preload.css`,
+    `base/ham/n-ham-c-lite-yt-async.css`,
     `base/html/iframe.css`,
     `base/html/img.css`,
     `base/html/p.css`,
