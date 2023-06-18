@@ -6,7 +6,9 @@
       }
     ],
     "preload": [
-      "https://example.com/preload.js"
+      {
+        "src": "https://example.com/preload.js"
+      }
     ],
     "sync": [
       {
