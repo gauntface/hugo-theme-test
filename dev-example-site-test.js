@@ -43,6 +43,9 @@ test.beforeEach(async (t) => {
   // Ensure we get 200 responses from the server
   t.context.page.on('response', (response) => {
     if (response) {
+      if (response.status() !== 200) {
+        console.log(`Invalid response:`, response.url(), response.status());
+      }
       t.deepEqual(response.status(), 200);
     }
   })
